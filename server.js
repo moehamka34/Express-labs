@@ -29,6 +29,20 @@ app.get("/:name", (req, res) => {
     let randomIndex = Math.floor(Math.random() * ballResponse.length)
     res.send(ballResponse[randomIndex])
   });
+  app.get ("/", (req, resp)=> {
+    resp.send (`<h2>99 Bottles of juice on the wall</h2>` + 
+    `<h3><a href = "/98">take one down, pass it around</a></h3>`)
+});
+
+app.get('/:number_of_bottles', (req, resp) => {
+    resp.send(
+      req.params.number_of_bottles +
+        ' bottles of juice on the wall. ' +
+        `<h3><a href ="http://localhost:3000/${
+          req.params.number_of_bottles - 1
+        }">take one down, pass it around</a><h3>`
+    );
+  });
 
 
 app.listen(3000, () => {
